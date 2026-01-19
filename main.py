@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from logger import log_state
+from player import *
+
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -12,6 +14,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock() #clock object
     dt = 0
+    player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2)) 
     
     while True:
         log_state()
@@ -22,8 +25,10 @@ def main():
         #Game logic and drawing goes here
         screen.fill("black") #set background screen to black
         
+        #draw player
+        player_object.draw(screen)
         #Call .tick(60) at the end of the loop and divide return value by 1000 to get ms, and save to dt "Delta time"
-        dt = clock.tick(60) / 1000
+        dt = clock.tick(60) / 1000 #set the FPS to 60
         #print(dt) // may be useful to have in future
 
         pygame.display.flip() #refreshes the screen, always call last
