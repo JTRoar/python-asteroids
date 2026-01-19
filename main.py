@@ -6,16 +6,26 @@ def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(F"Screen height: {SCREEN_HEIGHT}")
+    
     #initialize pygame
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
+    clock = pygame.time.Clock() #clock object
+    dt = 0
+    
     while True:
+        log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT: ##allow you to exit out by clicking X
                 return
         
+        #Game logic and drawing goes here
         screen.fill("black") #set background screen to black
+        
+        #Call .tick(60) at the end of the loop and divide return value by 1000 to get ms, and save to dt "Delta time"
+        dt = clock.tick(60) / 1000
+        #print(dt) // may be useful to have in future
+
         pygame.display.flip() #refreshes the screen, always call last
         
 
