@@ -12,9 +12,11 @@ def main():
 
     while True:
         for event in pygame.event.get():
-            pass #//TODO update eventually
-        screen.fill("black")
-        pygame.display.flip()
+            if event.type == pygame.QUIT: ##allow you to exit out by clicking X
+                return
+        
+        screen.fill("black") #set background screen to black
+        pygame.display.flip() #refreshes the screen, always call last
         
 
 
