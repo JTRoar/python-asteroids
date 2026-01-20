@@ -23,6 +23,7 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     #Player is name of class, not an instance of it
     #this must be done before any player objects are created
     Player.containers = (
@@ -41,14 +42,19 @@ def main():
     #create new asteroidfield object
     asteroid_field = AsteroidField()
 
-
+    #create shots containers
+    Shot.containers = (
+        updatable,
+        drawable,
+        shots
+    )  
 
     #use the player class created in player.py
     player_object = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2)) 
     
     while True:
         log_state()
-        log_event("player_hit")
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT: ##allow you to exit out by clicking X
                 return
