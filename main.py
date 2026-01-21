@@ -19,7 +19,7 @@ def main():
     clock = pygame.time.Clock() #clock object
     dt = 0
     
-    #GROUPS
+    #GROUPS (iterable in for loops, such as collision detection below)
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
@@ -69,6 +69,16 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+
+        #Make asteroids disappear when shot
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    log_event("asteroid_shot")
+                    asteroid.split() #//TODO Replace with asteroid.split()
+                    shot.kill()
+                    
+
         
         for object in drawable:  #draw all the drawables
             object.draw(screen)
